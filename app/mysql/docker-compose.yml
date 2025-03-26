@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  
+  mysql:
+    container_name: mysql
+    image: mysql:5.7
+    volumes:
+      - ./data:/var/lib/mysql    # MySQL 数据目录
+      - ./config/my.cnf:/etc/my.cnf # MySQL 配置目录
+      - ./log:/var/log/mysql   # MySQL 日志目录
+      
+    environment:
+      MYSQL_ROOT_PASSWORD: root        # 设置 MySQL root 密码
+      #MYSQL_DATABASE: test         # 创建数据库
+    ports:
+      - "3306:3306"                    # 映射端口 3307 到 3306
+    restart: always                    # 容器随 Docker 启动
+                                    

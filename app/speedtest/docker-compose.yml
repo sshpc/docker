@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  speedtest:
+    container_name: speedtest
+    image: ghcr.io/librespeed/speedtest:latest
+    restart: always
+    environment:
+      MODE: standalone
+      TITLE: "local—Speedtest"
+    ports:
+      - "8080:8080" # webport mapping (host:container)
+   
