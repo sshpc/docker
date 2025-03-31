@@ -1,0 +1,14 @@
+services:
+  openvpn:
+    image: yyxx/openvpn
+    cap_add:
+      - NET_ADMIN
+    ports:
+      - "1194:1194/udp"
+      - "8833:8833"
+    environment:
+      - ADMIN_USERNAME=admin
+      - ADMIN_PASSWORD=admin
+    volumes:
+      - ./data:/data
+      - /etc/localtime:/etc/localtime:ro
