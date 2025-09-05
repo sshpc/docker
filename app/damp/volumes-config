@@ -1,0 +1,9 @@
+php
+
+upload_max_filesize = 2000M    ; 单个上传文件的最大大小
+post_max_size = 2000M          ; POST 数据的最大大小（应大于 upload_max_filesize）
+memory_limit = 2000M           ; PHP 可用的最大内存（应大于 post_max_size）
+date.timezone = PRC
+
+php-fpm
+pm.max_children = 20

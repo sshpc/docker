@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  apache:
+    build: ./apache
+    container_name: apache
+    ports:
+      - "80:80"
+    volumes:
+      - ./www:/var/www/html
+      - ./apache/vhost.conf:/usr/local/apache2/conf/extra/vhost.conf
+      - apache-config:/usr/local/apache2/conf
+      - apache-logs:/usr/local/apache2/logs
+    depends_on:
+      - php56
+      - php74
+    restart: always                    # 容器随 Docker 启动
+
+  php56:
+    build: ./php56
+    container_name: php56
+    volumes:
+      - ./www:/var/www/html
+      - php56-config:/usr/local/etc/php  # PHP 配置目录
+      - php56-fpm-config:/usr/local/etc/php-fpm.d  # php-fpm 配置目录
+    restart: always                    # 容器随 Docker 启动
+
+  php74:
+    build: ./php74
+    container_name: php74
+    volumes:
+      - ./www:/var/www/html
+      - php74-config:/usr/local/etc/php  # PHP 配置目录
+      - php74-fpm-config:/usr/local/etc/php-fpm.d  # php-fpm 配置目录
+    restart: always                    # 容器随 Docker 启动
+
+volumes:
+  php56-config: 
+  php74-config: 
+  apache-config:
+  apache-logs:
+  php56-fpm-config:
+  php74-fpm-config:

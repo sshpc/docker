@@ -1,7 +1,4 @@
-version: '3.8'
-
 services:
-  
   mysql:
     container_name: mysql
     image: mysql:5.7
@@ -16,4 +13,5 @@ services:
     ports:
       - "3306:3306"                    # 映射端口 3307 到 3306
     restart: always                    # 容器随 Docker 启动
+
                                     
