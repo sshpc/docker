@@ -20,6 +20,8 @@ RUN apt-get update && apt-get install -y --allow-unauthenticated \
         zlib1g-dev \
         libwebp-dev \
         default-libmysqlclient-dev \
+        libicu-dev \
+        libxml2-dev \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
     && docker-php-ext-install -j$(nproc) \
         mysqli \
@@ -28,5 +30,12 @@ RUN apt-get update && apt-get install -y --allow-unauthenticated \
         zip \
         gd \
         mcrypt \
+        intl \
+        pcntl \
+        shmop \
+        sockets \
+        soap \
+        opcache \
     && pecl install redis-3.1.6 \
-    && docker-php-ext-enable redis
+    && docker-php-ext-enable redis \
+    && rm -rf /var/lib/apt/lists/*
